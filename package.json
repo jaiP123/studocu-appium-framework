@@ -1,0 +1,38 @@
+{
+  "name": "studocu-appium-framework",
+  "version": "1.0.0",
+  "description": "Appium tests using WebdriverIO",
+  "main": "index.js",
+  "scripts": {
+    "test": "wdio ./config/wdio.android.conf.js --spec ./test/specs/search.spec.js",
+    "android:regression": "wdio run ./config/wdio.android.conf.js",
+    "ios:regression": "wdio run ./config/wdio.ios.conf.js"
+  },
+  "keywords": [
+    "webdriverio",
+    "appium"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wdio/cli": "^7.14.1",
+    "appium": "^2.0.0-beta.18",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/register": "^7.16.0",
+    "@wdio/appium-service": "^7.33.0",
+    "@wdio/browserstack-service": "^7.16.10",
+    "@wdio/local-runner": "^7.33.0",
+    "@wdio/mocha-framework": "^7.33.0",
+    "@wdio/spec-reporter": "^7.33.0",
+    "appium-uiautomator2-driver": "^2.34.2",
+    "chromedriver": "^119.0.1",
+    "eslint": "7.32.0",
+    "eslint-plugin-wdio": "^7.4.2",
+    "wdio-chromedriver-service": "^8.1.1"
+  }
+}
