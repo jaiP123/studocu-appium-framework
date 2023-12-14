@@ -4,7 +4,8 @@
   "description": "Appium tests using WebdriverIO",
   "main": "index.js",
   "scripts": {
-    "test": "wdio ./config/wdio.android.conf.js --spec ./test/specs/search.spec.js",
+    "testandroid": "wdio ./config/wdio.android.conf.js --spec ./test/specs/book-details.spec.js",
+    "testios": "wdio ./config/wdio.ios.conf.js --spec ./test/specs/book-details.spec.js",
     "android:regression": "wdio run ./config/wdio.android.conf.js",
     "ios:regression": "wdio run ./config/wdio.ios.conf.js"
   },
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.23.3",
     "@babel/preset-env": "^7.16.4",
     "@babel/register": "^7.16.0",
     "@wdio/appium-service": "^7.33.0",
@@ -30,6 +32,7 @@
     "@wdio/mocha-framework": "^7.33.0",
     "@wdio/spec-reporter": "^7.33.0",
     "appium-uiautomator2-driver": "^2.34.2",
+    "appium-xcuitest-driver": "^4.30.2",
     "chromedriver": "^119.0.1",
     "eslint": "7.32.0",
     "eslint-plugin-wdio": "^7.4.2",

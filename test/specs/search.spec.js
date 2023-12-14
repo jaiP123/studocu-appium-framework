@@ -16,7 +16,7 @@ describe('Search Scenarios', () => {
     await SearchResultScreen.clickGoBack();
   });
 
-  it('Verify search books using Title  ', async () => {
+  it('Verify search books using Title ', async () => {
     await SearchScreen.searchBook(BOOK_TITLE)
     await SearchScreen.clickSearch()
     await driver.pause(40000);

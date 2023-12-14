@@ -25,7 +25,8 @@ config.capabilities = [
     "appium:platformVersion": "16.0",
     "appium:deviceName": "iPhone 14 Pro",
     "appium:automationName": "XCUITest",
-    "appium:app": path.join(process.cwd(), "app/ios/StudocuProject.app"),
+    "appium:app": path.join(process.cwd(), "app/ios/StuDocuProject.app"),
+    "appium:noReset": "false"
   }
 ]
 

@@ -22,7 +22,6 @@ Appium Inspector |  | [Appium Inspector]( https://github.com/appium/appium-inspe
  **Framework Setup**
 - Run `yarn` or `npm install` to install all dependencies.
 - install Uiautomator2 & XCuittest drivers.
-- WDIO configuration helper `npx wdio run wdio.conf.js`
 
  **Setup simulator**
 - Setup simulator/Emulators 
@@ -50,7 +49,9 @@ Appium Inspector |  | [Appium Inspector]( https://github.com/appium/appium-inspe
 1. Make sure that config/<android/ios>.wdio.conf.js is configured with correct emulator , device capabilities and are connected to your local machine.
 2. if you want to run individual test use below command -
 `npx wdio {config} --spec {filename}`
-3. To run all specs files use  `yarn android:regression` 
+3. To run all specs files use  
+  for Android- `yarn android:regression` 
+  for iOS- `yarn ios:regression` 
 
 **Note**: No need to run appium server separately.
 

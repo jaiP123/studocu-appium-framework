@@ -2,7 +2,7 @@
 const SearchScreen = require("../screenobjects/search.screen");
 const SearchResultScreen = require("../screenobjects/searchresult.screen");
 const BookDetailsScreen = require("../screenobjects/bookdetails.screen");
-const { BOOK_TITLE } = require("../../src/utils/constants");
+const { BOOK_TITLE, BOOK_AUTHOR } = require("../../src/utils/constants");
 
 
 describe('Book Details Scenarios', () => {
@@ -10,15 +10,16 @@ describe('Book Details Scenarios', () => {
      await restartApp()
    })  
 */
-  it.only('Verify book deatils show book name , summary ,author', async () => {
+
+  it('Verify book deatils show book name , summary ,author', async () => {
     //wait addded since app is too slow
     await SearchScreen.searchBook(BOOK_TITLE)
     await SearchScreen.clickSearch()
-    await driver.pause(40000);
+    await driver.pause(30000);
     await BookDetailsScreen.openBook();
-    await driver.pause(10000);
+    await driver.pause(10000); 
     await BookDetailsScreen.getTitle();
-    await BookDetailsScreen.getAuthorBook();
+    await BookDetailsScreen.getAuthorBook(BOOK_AUTHOR);
     await driver.pause(10000);
     await BookDetailsScreen.getBookSummary();
     await BookDetailsScreen.clickGoBack();
@@ -36,7 +37,7 @@ describe('Book Details Scenarios', () => {
     await BookDetailsScreen.clickGoBack();
   });
 
-  it.skip('Verify add/remove book to wishlist ', async () => {
+  it.only('Verify add/remove book to wishlist ', async () => {
     await SearchScreen.searchBook(BOOK_TITLE)
     await SearchScreen.clickSearch()
     await driver.pause(30000);

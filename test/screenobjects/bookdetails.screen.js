@@ -5,61 +5,76 @@ const { isAndroid, isIOS } = require("../../src/utils/helper");
 
 class BookDetailsScreen {
 
-  /* LOCATORS*/ßß
-
-  /* get searchField() {
-   if(isAndroid){
-     console.log("inside isAndoid ")
-     return $('//*[@text="Search"]');
-   }else if(isIOS){
-     return $(`~mobile.login.get-user-identifier.user-input.placeholder.phoneNumber`);
-   }
- } */
+  /* LOCATORS*/
 
   get searchTitle() {
-    return $('//*[@text="The Lord of the Rings"]');
+    if (isAndroid()) {
+      return $('//*[@text="Connecting the Continents"]');
+    } else if (isIOS) {
+      return $('//XCUIElementTypeStaticText[@name="Connecting the Continents"]');
+    }
   }
 
   get getBookRecord() {
-    return $('//*[@content-desc="The Lord of the Rings, J.R.R. Tolkien, 2019"]');
+    if (isAndroid()) {
+      return $('//*[@content-desc="Connecting the Continents, Civil Aviation Authority, 2007"]'); // check xpath on android 
+    } else if (isIOS) {
+      return $('(//XCUIElementTypeOther[@name="Connecting the Continents Civil Aviation Authority 2007  "])[2]');
+    }
   }
 
   get getAuthor() {
-    return $('//*[@text="J.R.R. Tolkien"]');
+    if (isAndroid()) {
+      return $('//*[@text="Civil Aviation Authority"]');
+    } else if (isIOS) {
+      return $('//XCUIElementTypeStaticText[contains(@name, "Civil Aviation Authority")]');
+    }
   }
 
   get getSummary() {
-    return $('//*[@text="Book Summary"]');
+    if (isAndroid()) {
+      return $('//*[@text="Book Summary"]');
+    } else if (isIOS) {
+      return $('//XCUIElementTypeStaticText[@name="Book Summary"]');
+    }
   }
 
   get currentlyReadingBtn() {
-    return $('//*[@text="Currently Reading"]');
+    if (isAndroid()) {
+      return $('//*[@text="Currently Reading"]');
+    } else if (isIOS) {
+      return $('(//XCUIElementTypeOther[@name =" Currently Reading"])[1]');
+    }
   }
 
   get goBackBtn() {
-    return $('//*[@content-desc="Go back"]')
+    if (isAndroid()) {
+      return $('//*[@content-desc="Go back"]')
+    } else if (isIOS) {
+      return $('//XCUIElementTypeButton[@name="Go back"]');
+    }
   }
 
   get getAddtoReading() {
-    return $$('//*[contains(@content-desc, "")]')[1]; // Selecting the second element (index 1)
+    if (isAndroid()) {
+      return $$('//*[contains(@content-desc, "")]')[1]; // Selecting the second element (index 1)
+    } else if (isIOS) {
+      return $('//XCUIElementTypeOther[@name=""]');
+    }
   }
 
   get getWishlist() {
-    return $$('//*[@content-desc=""]')[0];
+    if (isAndroid()) {
+      //To do 
+      //return $('(//*[@content-desc=""])[2]//preceding-sibling::android.view.ViewGroup');
+      return $$('//*[contains(@content-desc, "")]')[2];
+    } else if (isIOS) {
+      return $('(//XCUIElementTypeOther[@name=" "])[2]//preceding-sibling::XCUIElementTypeOther[1]');
+    }
   }
 
 
   /* PAGE OBJECT METHODS*/
-
-  /* get searchField() {
-   if(isAndroid){
-     console.log("inside isAndoid ")
-     return $('//*[@text="Search"]');
-   }else if(isIOS){
-     return $('//*[@text="Search"]');
-   }
- } */
-
 
   async openBook() {
     await verify.waitUntilDisplayed(this.getBookRecord, "book name field")
@@ -70,15 +85,18 @@ class BookDetailsScreen {
     await verify.waitUntilDisplayed(this.searchTitle, "Title field of Book")
   }
 
-  async getAuthorBook() {
+  async getAuthorBook(author) {
     await verify.waitUntilDisplayed(this.getAuthor, "Author field of book")
+    await this.getAuthor.getText().then(text => {
+      expect(text).toHaveText(author);
+    })
   }
 
   async getBookSummary() {
     await verify.waitUntilDisplayed(this.getSummary, "Summary field")
   }
 
-  async addBookToCurrentlyReading() {
+  async tapOnAddBookToCurrentlyReadingIcon() {
     await verify.waitUntilDisplayed(this.getAddtoReading, "Add book to currently reading icon")
     await this.getAddtoReading.click()
   }

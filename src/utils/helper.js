@@ -1,12 +1,11 @@
 const { ANDROID_BUNDLE_ID, IOS_BUNDLE_ID } = require('./constants');
 
 const isAndroid = () => {
-  return driver.isAndroid
-}
-
+  return driver.isAndroid;
+};
 const isIOS = () => {
-  return driver.isIOS
-}
+  return driver.isIOS;
+};
 
 const restartApp = async () => {
   if (isAndroid()) {
@@ -18,4 +17,6 @@ const restartApp = async () => {
     await driver.activateApp(IOS_BUNDLE_ID);
   }
   await driver.setOrientation('PORTRAIT');
-}
+};
+
+module.exports = { isAndroid, isIOS, restartApp }; 

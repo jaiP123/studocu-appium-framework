@@ -6,15 +6,27 @@ const { isAndroid, isIOS } = require("../../src/utils/helper");
 class CurrentlyReadingScreen {
 
   get getBookTitle() {
-    return $('//*[@text="The Lord of the Rings"]');
+    if (isAndroid()) {
+      return $('//*[@text="Connecting the Continents"]');
+    } else if (isIOS) {
+      return $('//XCUIElementTypeStaticText[@name="Connecting the Continents"]');
+    }
   }
 
   get currentlyReadingBtn() {
-    return $('//*[@text="Currently Reading"]');
+    if (isAndroid()) {
+      return $('//*[@text="Currently Reading"]');
+    } else if (isIOS) {
+      return $('(//XCUIElementTypeOther[@name=" Currently Reading”])[5]');
+    }
   }
 
   get goBackBtn() {
-    return $('//*[@content-desc="Go back"]')
+    if (isAndroid()) {
+      return $('//*[@content-desc="Go back"]')
+    } else if (isIOS) {
+      return $('//XCUIElementTypeButton[@name="Go back"]');
+    }
   }
 
 
@@ -31,7 +43,6 @@ class CurrentlyReadingScreen {
   async clickGoBack() {
     await this.goBackBtn.click();
   }
-
 }
 
 module.exports = new CurrentlyReadingScreen();

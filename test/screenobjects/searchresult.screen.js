@@ -8,19 +8,35 @@ class SearchResultScreen {
   /* LOCATORS*/
 
   get searchresultLabel() {
-    return $('//*[contains(@text, "Total search results")]')
+    if (isAndroid()) {
+      return $('//*[contains(@text, "Total search results")]')
+    } else if (isIOS) {
+      return $('//XCUIElementTypeStaticText[@name="Total search results: 100"]');
+    }
   }
 
   get goBackBtn() {
-    return $('//*[@content-desc="Go back"]')
+    if (isAndroid()) {
+      return $('//*[@content-desc="Go back"]')
+    } else if (isIOS) {
+      return $('//XCUIElementTypeButton[@name="Go back"]');
+    }
   }
 
   get currentlyReadingBtn() {
-    return $('//*[@text="Currently Reading"]');
+    if (isAndroid()) {
+      return $('//*[@text="Currently Reading"]');
+    } else if (isIOS) {
+      return $('(//XCUIElementTypeOther[@name=" Currently Reading"])[1]');
+    }
   }
 
   get getTitle() {
-    return $('//*[@text="The Lord of the Rings"]');
+    if (isAndroid()) {
+      return $('//*[@text="Connecting the Continents"]');
+    } else if (isIOS) {
+      return $('(//XCUIElementTypeOther[@name="Connecting the Continents Civil Aviation Authority 2007  "])[2]');
+    }
   }
 
 

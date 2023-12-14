@@ -11,17 +11,20 @@ describe('Currently reading  Scenarios', () => {
    })  
 */
   it('Verify add book to currently reading book', async () => {
-    await driver.pause(10000);
+    await driver.pause(3000);
     await SearchScreen.searchBook(BOOK_TITLE)
     await SearchScreen.clickSearch()
-    await driver.pause(40000);
+    await driver.pause(30000);
     await BookDetailsScreen.openBook();
-    await driver.pause(5000);
-    await BookDetailsScreen.addBookToCurrentlyReading()
-    await driver.pause(2000);
-    await BookDetailsScreen.goToCurrentlyReadingScreen()
     await driver.pause(3000);
+    await BookDetailsScreen.tapOnAddBookToCurrentlyReadingIcon()
+    await driver.pause(1000);
+    await BookDetailsScreen.goToCurrentlyReadingScreen()
+    await driver.pause(2000);
     await CurrentlytReadingScreen.getTitle()
+    await CurrentlytReadingScreen.clickGoBack()
+    await BookDetailsScreen.tapOnAddBookToCurrentlyReadingIcon()
+    await CurrentlytReadingScreen.clickGoBack()
     await CurrentlytReadingScreen.clickGoBack()
   });
 
