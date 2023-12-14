@@ -66,6 +66,6 @@ To Do: Get cloud license to connect & execute tests on cloud platform
 - Spec reporting is used . Log level is set to "error" .reporters: ['spec']
 - To do :Advanced reporting can be implemented to show graphs 
 
-# CI/CD pipeline
+## CI/CD pipeline
 - This can be integrated with CI/CD pipeline .
 
