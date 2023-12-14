@@ -23,7 +23,7 @@ class Verify {
   async getTextValue(webElement) {
     await webElement.getValue()
   }
-  
+
   async isClickable(webElement) {
     await webElement.waitForClickable()
   }
@@ -60,7 +60,6 @@ class Verify {
   async isSelected(webElement) {
     await expect(webElement).toBeSelected()
   }
-
 }
 
 module.exports = new Verify();

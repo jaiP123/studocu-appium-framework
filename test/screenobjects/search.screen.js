@@ -1,62 +1,62 @@
 const interact = require("../../src/utils/interact");
 const verify = require("../../src/utils/verify");
-const { isAndroid, isIOS } = require("../../src/utils/helper");
+const { isAndroid, isIOS } = require('../../src/utils/helper');
 
-
+//ES6 moul support to use import
 class SearchScreen {
 
   /* LOCATORS*/
 
-  /* get searchField() {
-   if(isAndroid){
-     console.log("inside isAndoid ")
-     return $('//*[@text="Search"]');
-   }else if(isIOS){
-     return $(``);
-   }
- } */
 
   get searchField() {
-    return $('//*[@text="Search"]');
+    if (isAndroid()) {
+      return $('//*[@text="Search"]');
+    } else if (isIOS()) {
+      return $('//XCUIElementTypeOther[@name="Search"]')
+    }
   }
 
   get getEditText() {
-    return $('//android.widget.EditText');
+    if (isAndroid()) {
+      return $('//android.widget.EditText');
+    } else if (isIOS) {
+      return $('//XCUIElementTypeTextField');
+    }
   }
 
   get searchIcon() {
-    return $('//*[@content-desc=""]');
+    if (isAndroid()) {
+      return $('//*[@content-desc=""]');
+    } else if (isIOS) {
+      return $('(//XCUIElementTypeOther[@name=""])[12]');
+    }
   }
 
   get currentlyReadingBtn() {
-    return $('//*[@text="Currently Reading"]');
+    if (isAndroid()) {
+      return $('//*[@text="Currently Reading"]');
+    } else if (isIOS) {
+      return $('(//XCUIElementTypeOther[@name=" Currently Reading"])[1]');
+    }
   }
 
 
 
   /* PAGE OBJECT METHODS*/
 
-  /* get searchField() {
-   if(isAndroid){
-     console.log("inside isAndoid ")
-     return $('//*[@text="Search"]');
-   }else if(isIOS){
-     return $('//*[@text="Search"]');
-   }
- } */
-
   async searchBook(bookname) {
     await verify.waitUntilDisplayed(this.getEditText, "Search edit field")
     await interact.clearValue(this.getEditText)
     await verify.waitUntilDisplayed(this.searchField, "Search edit field")
+    await this.searchField.click()
     await this.searchField.setValue(bookname)
   }
 
   async clickSearch() {
     await verify.waitUntilDisplayed(this.searchIcon, "Search icon image")
     await this.searchIcon.click();
-
   }
+
   async clickSearchCR() {
     await verify.waitUntilDisplayed(this.currentlyReadingBtn, "Currently reading button")
     await this.currentlyReadingBtn.click();
